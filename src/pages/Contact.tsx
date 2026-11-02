@@ -56,7 +56,6 @@ export const Contact: React.FC = () => {
     <div ref={containerRef} className="relative">
       <section className="relative overflow-hidden pt-16 pb-12 sm:pt-24 sm:pb-16">
         <div className="grid-backdrop pointer-events-none absolute inset-0 opacity-50" aria-hidden="true" />
-        <div className="pointer-events-none absolute top-0 right-0 h-[380px] w-[520px] rounded-full bg-cyan-400/[0.06] blur-[120px]" aria-hidden="true" />
         <div className="container-x relative">
           <SectionHeading
             as="h1"

@@ -204,7 +204,6 @@ export const About: React.FC = () => {
       <section className="pb-24 sm:pb-28">
         <div className="container-x">
           <div data-reveal="scale" className="card relative overflow-hidden p-8 sm:p-12">
-            <div className="pointer-events-none absolute -top-32 -right-24 h-72 w-72 rounded-full bg-indigo-500/10 blur-[90px]" aria-hidden="true" />
             <div className="relative grid gap-8 lg:grid-cols-12 lg:items-end">
               <div className="lg:col-span-8">
                 <div className="flex items-center gap-2 font-mono text-[11px] tracking-[0.2em] text-accent uppercase">

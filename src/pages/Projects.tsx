@@ -28,16 +28,16 @@ const ProjectCard: React.FC<{ project: ProjectData; index: number }> = ({ projec
           src={project.image}
           alt={project.imageAlt}
           fallbackTitle={project.title}
-          className="h-full w-full object-cover will-change-transform"
+          className="h-full w-full object-cover object-left-top will-change-transform"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent" />
-        <span className="chip absolute top-3 left-3 border-white/15 bg-black/50 text-slate-100 backdrop-blur-md">{project.category}</span>
-        <span className="absolute top-3 right-3 font-mono text-[11px] text-white/60">{String(index + 1).padStart(2, '0')}</span>
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+        <span className="chip absolute top-3 left-3 !border-snow/20 !bg-black/60 !text-snow backdrop-blur-md">{project.category}</span>
+        <span className="absolute top-3 right-3 rounded-full bg-black/60 px-2 py-1 font-mono text-[11px] text-snow/90 backdrop-blur-md">{String(index + 1).padStart(2, '0')}</span>
       </div>
 
       <div className="flex flex-1 flex-col px-4 pt-5 pb-3">
         <h3 className="text-lg font-semibold tracking-tight text-white">{project.title}</h3>
-        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-slate-400">{project.shortDescription}</p>
+        <p className="mt-2 text-sm leading-relaxed text-slate-400">{project.shortDescription}</p>
 
         <div className="mt-4 mb-6 flex flex-wrap gap-1.5">
           {project.technologies.slice(0, 4).map((tech) => (

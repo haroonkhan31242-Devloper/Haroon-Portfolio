@@ -379,7 +379,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ initialSubject = '' })
                 : status === 'success'
                 ? 'bg-emerald-400 text-slate-950 hover:bg-emerald-300'
                 : status === 'error'
-                ? 'bg-rose-500 text-white hover:bg-rose-400'
+                ? 'bg-rose-600 text-snow hover:bg-rose-500'
                 : 'btn-primary'
             }`}
           >

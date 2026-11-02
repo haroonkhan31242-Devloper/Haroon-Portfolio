@@ -37,8 +37,8 @@ export const FeaturedProjectCard: React.FC<FeaturedProjectCardProps> = ({
     <article className="card spotlight overflow-hidden p-2 sm:p-3">
       <div className="grid grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-3">
         {/* Visual */}
-        <div data-reveal="clip" className="lg:col-span-7">
-          <div className="relative h-full overflow-hidden rounded-[14px] border border-white/[0.06] bg-ink-950">
+        <div data-reveal="clip" className="lg:col-span-7 lg:flex lg:flex-col lg:justify-center">
+          <div className="relative overflow-hidden rounded-[14px] border border-white/[0.08] bg-ink-950">
             {/* Window chrome */}
             <div className="flex items-center gap-3 border-b border-white/[0.06] bg-white/[0.02] px-4 py-2.5">
               <div className="flex gap-1.5" aria-hidden="true">
@@ -53,17 +53,17 @@ export const FeaturedProjectCard: React.FC<FeaturedProjectCardProps> = ({
             <Link
               to={`/projects/${project.slug}`}
               ref={frameRef}
-              className="group relative block aspect-[16/10] overflow-hidden lg:aspect-auto lg:h-[calc(100%-41px)] lg:min-h-[420px]"
+              className="group relative block aspect-[16/10] overflow-hidden"
               aria-label={`Open ${project.title} case study`}
             >
               <SafeImage
                 src={project.image}
                 alt={project.imageAlt}
                 fallbackTitle={project.title}
-                className="h-full w-full object-cover object-top will-change-transform"
+                className="h-full w-full object-cover object-left-top will-change-transform"
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950/80 via-ink-950/10 to-transparent" />
-              <span className="absolute bottom-4 left-4 inline-flex translate-y-2 items-center gap-2 rounded-full border border-white/15 bg-black/50 px-3 py-1.5 text-xs font-medium text-white opacity-0 backdrop-blur-md transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <span className="absolute bottom-4 left-4 inline-flex translate-y-2 items-center gap-2 rounded-full border border-snow/20 bg-black/60 px-3 py-1.5 text-xs font-medium text-snow opacity-0 backdrop-blur-md transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
                 View case study <ArrowRight className="h-3.5 w-3.5" />
               </span>
             </Link>

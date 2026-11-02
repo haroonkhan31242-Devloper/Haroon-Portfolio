@@ -57,7 +57,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
       {
         id: 'page-home',
         title: 'Home',
-        subtitle: 'Main portfolio overview, 3D MERN architecture & introduction',
+        subtitle: 'Main portfolio overview, MERN architecture & introduction',
         category: 'Page',
         url: '/',
         icon: <Compass className="w-4 h-4 text-cyan-400" />,
@@ -233,7 +233,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-start justify-center pt-16 sm:pt-24 px-4 pb-6 animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-start justify-center pt-16 sm:pt-24 px-4 pb-6 animate-in fade-in duration-150"
       onClick={onClose}
       role="dialog"
       aria-modal="true"

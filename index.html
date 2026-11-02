@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,7 +19,19 @@
     <meta name="twitter:title" content="Haroon Khan | Full-Stack MERN Developer" />
     <meta name="twitter:description" content="Full-Stack MERN Developer building modern, responsive, and user-friendly web applications." />
 
-    <meta name="theme-color" content="#06080c" />
+    <meta name="theme-color" content="#0a0c10" />
+    <!-- Apply the saved (or system) theme before first paint to avoid a flash -->
+    <script>
+      (function () {
+        var t;
+        try { t = localStorage.getItem('hk-theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        var r = document.documentElement;
+        r.setAttribute('data-theme', t);
+        r.style.colorScheme = t;
+        if (t === 'light') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f5f6f8');
+      })();
+    </script>
     <link rel="preload" as="image" type="image/webp" imagesrcset="/assets/aistudio/haroon-khan-portrait-480.webp 480w, /assets/aistudio/haroon-khan-portrait-900.webp 900w" imagesizes="(max-width: 1023px) 86vw, 460px" />
 
     <!-- Google Fonts: Plus Jakarta Sans, Instrument Serif (accents) & JetBrains Mono -->
@@ -27,7 +39,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   </head>
-  <body class="min-h-screen overflow-x-hidden bg-[#06080c] font-sans text-slate-100 antialiased">
+  <body class="min-h-screen overflow-x-hidden font-sans antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

@@ -70,8 +70,8 @@ const ScreenshotCard: React.FC<{ title: string; caption: string; url: string; on
   return (
     <div className="card card-hover spotlight group relative flex w-full flex-col overflow-hidden p-2">
       <div ref={frameRef} className="relative aspect-[16/10] w-full overflow-hidden rounded-[14px] bg-ink-950">
-        <SafeImage src={url} alt={title} fallbackTitle={title} className="h-full w-full object-cover will-change-transform" />
-        <span className="pointer-events-none absolute right-3 bottom-3 inline-flex translate-y-2 items-center gap-1.5 rounded-full border border-white/15 bg-black/50 px-3 py-1.5 text-xs font-medium text-white opacity-0 backdrop-blur-md transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+        <SafeImage src={url} alt={title} fallbackTitle={title} className="h-full w-full object-cover object-left-top will-change-transform" />
+        <span className="pointer-events-none absolute right-3 bottom-3 inline-flex translate-y-2 items-center gap-1.5 rounded-full border border-snow/20 bg-black/60 px-3 py-1.5 text-xs font-medium text-snow opacity-0 backdrop-blur-md transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
           <Maximize2 className="h-3.5 w-3.5" />
           Expand
         </span>
@@ -350,8 +350,8 @@ export const ProjectDetails: React.FC = () => {
         <div className="container-x">
           <SectionHeading
             eyebrow="Visual Interfaces"
-            title="Application Screenshots & Walkthrough"
-            description="Click any screenshot to inspect high-resolution interface details."
+            title="Interface walkthrough"
+            description="Interface mockups of the three core screens: the admin dashboard, tenant invitations with unit assignment, and the tenant's payment and audit history. Click any screen to enlarge it."
             size="md"
           />
           <div data-reveal-group className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">

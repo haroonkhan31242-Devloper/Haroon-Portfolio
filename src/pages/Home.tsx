@@ -25,7 +25,6 @@ import {
 import { PERSONAL_INFO, PORTFOLIO_IMAGES, CORE_TECH_STACK, PROJECTS_LIST } from '../data/portfolioData';
 import { SafeImage } from '../components/SafeImage';
 import { MernArchitectureHub } from '../components/MernArchitectureHub';
-import { AmbientBackground } from '../components/AmbientBackground';
 import { FeaturedProjectCard } from '../components/FeaturedProjectCard';
 import { SplitText } from '../components/motion/SplitText';
 import { Magnetic } from '../components/motion/Magnetic';
@@ -57,7 +56,7 @@ const ENHANCED_TECH_STACK: TechItemDetail[] = [
     icon: Layers,
     accentColor: 'text-cyan-400',
     iconBg: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
-    hoverGlow: 'hover:border-cyan-500/50 hover:shadow-[0_0_24px_rgba(6,182,212,0.15)]',
+    hoverGlow: '',
     topGradient: 'from-cyan-500 to-sky-400',
     tags: ['Custom Hooks', 'Virtual DOM', 'SPA Architecture'],
   },
@@ -70,7 +69,7 @@ const ENHANCED_TECH_STACK: TechItemDetail[] = [
     icon: Server,
     accentColor: 'text-emerald-400',
     iconBg: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
-    hoverGlow: 'hover:border-emerald-500/50 hover:shadow-[0_0_24px_rgba(16,185,129,0.15)]',
+    hoverGlow: '',
     topGradient: 'from-emerald-500 to-green-400',
     tags: ['Event Loop', 'Async Runtime', 'Server Microservices'],
   },
@@ -83,7 +82,7 @@ const ENHANCED_TECH_STACK: TechItemDetail[] = [
     icon: Cpu,
     accentColor: 'text-amber-400',
     iconBg: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
-    hoverGlow: 'hover:border-amber-500/50 hover:shadow-[0_0_24px_rgba(245,158,11,0.15)]',
+    hoverGlow: '',
     topGradient: 'from-amber-500 to-yellow-400',
     tags: ['Middleware Pipelines', 'JWT & RBAC Guards', 'JSON Endpoints'],
   },
@@ -96,7 +95,7 @@ const ENHANCED_TECH_STACK: TechItemDetail[] = [
     icon: Database,
     accentColor: 'text-green-400',
     iconBg: 'bg-green-500/10 text-green-400 border-green-500/30',
-    hoverGlow: 'hover:border-green-500/50 hover:shadow-[0_0_24px_rgba(34,197,94,0.15)]',
+    hoverGlow: '',
     topGradient: 'from-green-500 to-emerald-400',
     tags: ['Mongoose Schemas', 'Aggregation Pipelines', 'BSON Indexing'],
   },
@@ -109,7 +108,7 @@ const ENHANCED_TECH_STACK: TechItemDetail[] = [
     icon: Wind,
     accentColor: 'text-sky-400',
     iconBg: 'bg-sky-500/10 text-sky-400 border-sky-500/30',
-    hoverGlow: 'hover:border-sky-500/50 hover:shadow-[0_0_24px_rgba(56,189,248,0.15)]',
+    hoverGlow: '',
     topGradient: 'from-sky-500 to-teal-400',
     tags: ['Responsive Layouts', 'Design Tokens', 'Glassmorphism'],
   },
@@ -122,7 +121,7 @@ const ENHANCED_TECH_STACK: TechItemDetail[] = [
     icon: Code2,
     accentColor: 'text-yellow-400',
     iconBg: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/30',
-    hoverGlow: 'hover:border-yellow-500/50 hover:shadow-[0_0_24px_rgba(234,179,8,0.15)]',
+    hoverGlow: '',
     topGradient: 'from-yellow-500 to-amber-400',
     tags: ['ES6+ Standards', 'Promises & Async', 'DOM Manipulation'],
   },
@@ -135,7 +134,7 @@ const ENHANCED_TECH_STACK: TechItemDetail[] = [
     icon: Palette,
     accentColor: 'text-blue-400',
     iconBg: 'bg-blue-500/10 text-blue-400 border-blue-500/30',
-    hoverGlow: 'hover:border-blue-500/50 hover:shadow-[0_0_24px_rgba(59,130,246,0.15)]',
+    hoverGlow: '',
     topGradient: 'from-blue-500 to-indigo-400',
     tags: ['CSS Grid & Flexbox', 'Fluid Typography', 'Custom Properties'],
   },
@@ -148,7 +147,7 @@ const ENHANCED_TECH_STACK: TechItemDetail[] = [
     icon: FileCode,
     accentColor: 'text-orange-400',
     iconBg: 'bg-orange-500/10 text-orange-400 border-orange-500/30',
-    hoverGlow: 'hover:border-orange-500/50 hover:shadow-[0_0_24px_rgba(249,115,22,0.15)]',
+    hoverGlow: '',
     topGradient: 'from-orange-500 to-rose-400',
     tags: ['Semantic Hierarchy', 'WCAG AA Standards', 'SEO Optimization'],
   },
@@ -234,31 +233,27 @@ export const Home: React.FC = () => {
       >
         {/* Backdrop layers (CSS fallback always present beneath WebGL) */}
         <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-          <div className="grid-backdrop absolute inset-0 opacity-60" />
-          <div className="absolute top-[-10%] left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-cyan-400/[0.07] blur-[120px]" />
-          <div className="absolute right-[-10%] bottom-[10%] h-[420px] w-[520px] rounded-full bg-indigo-500/[0.07] blur-[120px]" />
-          <AmbientBackground className="opacity-90" />
-          {/* Readability scrims */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#06080c] via-[#06080c]/75 to-[#06080c]/10 lg:via-[#06080c]/55" />
-          <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#06080c] to-transparent" />
+          <div className="grid-backdrop absolute inset-0" />
+          {/* Soft accent wash behind the portrait column */}
+          <div className="absolute inset-y-0 right-0 hidden w-[42%] border-l border-white/[0.05] bg-white/[0.015] lg:block" />
         </div>
 
         <div className="container-x relative">
           <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-12 lg:gap-10">
             {/* Copy */}
             <div className="hero-copy lg:col-span-7">
-              <div className="hero-eyebrow inline-flex items-center gap-2.5 rounded-full border border-white/[0.08] bg-white/[0.03] py-1.5 pr-3.5 pl-3 text-xs text-slate-300 backdrop-blur-sm">
+              <div className="hero-eyebrow inline-flex items-center gap-2.5 rounded-2xl sm:rounded-full border border-white/[0.08] bg-white/[0.03] py-1.5 pr-3.5 pl-3 text-xs text-slate-300 backdrop-blur-sm">
                 <span className="status-dot" aria-hidden="true" />
                 <span>{PERSONAL_INFO.availability}</span>
               </div>
 
               <h1 id="hero-heading" className="hero-title heading-xl mt-7">
                 <SplitText text="Hello, I’m" className="block text-slate-200" />
-                <SplitText text={PERSONAL_INFO.name} className="block" wordClassName="text-gradient" />
+                <SplitText text={PERSONAL_INFO.name} className="block text-white" />
               </h1>
 
               <p className="hero-role mt-5 text-xl font-light tracking-tight text-slate-300 sm:text-2xl lg:text-[1.75rem]">
-                Full-Stack <span className="serif-accent text-[1.15em] text-white">MERN</span> Developer
+                Full-Stack <span className="serif-accent text-[1.15em] text-accent">MERN</span> Developer
               </p>
 
               <p className="hero-intro lede mt-6 max-w-xl text-slate-400">{PERSONAL_INFO.heroIntro}</p>
@@ -300,12 +295,8 @@ export const Home: React.FC = () => {
                 className="hero-portrait-ring absolute -inset-4 rounded-[40px] border border-white/[0.06] sm:-inset-5"
                 aria-hidden="true"
               />
-              <div
-                className="absolute -inset-10 -z-10 rounded-full bg-gradient-to-tr from-cyan-400/15 via-transparent to-indigo-500/15 blur-3xl"
-                aria-hidden="true"
-              />
 
-              <figure className="hero-portrait-frame relative aspect-[4/5] overflow-hidden rounded-[28px] border border-white/10 bg-ink-850 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.8)]">
+              <figure className="hero-portrait-frame relative aspect-[4/5] overflow-hidden rounded-[28px] border border-white/10 bg-ink-850 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.55)]">
                 <SafeImage
                   src={PORTFOLIO_IMAGES.heroProfile}
                   srcSet={PORTFOLIO_IMAGES.heroProfileSrcSet}
@@ -321,12 +312,12 @@ export const Home: React.FC = () => {
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent" />
                 <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-white/10 ring-inset" />
 
-                <figcaption className="hero-portrait-caption absolute inset-x-3 bottom-3 flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-black/40 px-4 py-3 backdrop-blur-md">
+                <figcaption className="hero-portrait-caption absolute inset-x-3 bottom-3 flex items-center justify-between gap-3 rounded-2xl border border-snow/15 bg-black/55 px-4 py-3 backdrop-blur-md">
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-semibold text-white">{PERSONAL_INFO.name}</p>
-                    <p className="truncate font-mono text-[11px] text-accent">{PERSONAL_INFO.title}</p>
+                    <p className="truncate text-sm font-semibold text-snow">{PERSONAL_INFO.name}</p>
+                    <p className="truncate font-mono text-[11px] text-[#9fe3ec]">{PERSONAL_INFO.title}</p>
                   </div>
-                  <span className="inline-flex shrink-0 items-center gap-2 text-[11px] font-medium text-emerald-300">
+                  <span className="inline-flex shrink-0 items-center gap-2 text-[11px] font-medium text-[#86efc4]">
                     <span className="status-dot" aria-hidden="true" />
                     Available for Hire
                   </span>
@@ -473,7 +464,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* ================================================================ FEATURED PROJECT */}
-      <section className="section-y relative border-t border-white/[0.05] bg-gradient-to-b from-ink-900/50 to-transparent">
+      <section className="section-y relative border-t border-white/[0.05] bg-ink-900/60">
         <div className="container-x">
           <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <SectionHeading
@@ -511,10 +502,6 @@ export const Home: React.FC = () => {
         <div className="container-x">
           <div data-reveal="scale" className="card relative overflow-hidden px-6 py-16 text-center sm:px-12 md:py-24">
             <div className="grid-backdrop pointer-events-none absolute inset-0 opacity-50" aria-hidden="true" />
-            <div
-              className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[640px] -translate-x-1/2 rounded-full bg-cyan-400/10 blur-[100px]"
-              aria-hidden="true"
-            />
             <div className="relative mx-auto max-w-3xl">
               <span className="eyebrow">Ready to Collaborate</span>
               <h2 className="mt-6 text-3xl leading-[1.1] font-semibold tracking-[-0.03em] text-balance text-white sm:text-4xl lg:text-[2.9rem]">

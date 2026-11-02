@@ -82,24 +82,25 @@ export const PORTFOLIO_IMAGES = {
   // Original full-resolution portrait (kept as the source file)
   heroProfileOriginal: '/assets/aistudio/file_00000000fee88211aed821c55a294c43_9ac4e9c6.png',
   aboutWorkspace: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80',
-  tenantSystemPreview: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=80',
+  // Product mockups of the Tenant Management System UI (16:10, vector, depict only documented features)
+  tenantSystemPreview: '/assets/projects/tenant-dashboard.svg',
   codeArchitecture: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
   
   // Screenshots for the Tenant Management System case study
   tenantScreenshots: [
     {
       title: 'Admin & Property Owner Dashboard',
-      url: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1000&q=80',
+      url: '/assets/projects/tenant-dashboard.svg',
       caption: 'Unified property overview with occupancy metrics and owner management controls.',
     },
     {
       title: 'Tenant Invitation & Unit Assignment Portal',
-      url: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=80',
+      url: '/assets/projects/tenant-invitations.svg',
       caption: 'Streamlined invitation workflow pairing new tenants directly to rental units.',
     },
     {
       title: 'Payment Records & Transaction Audit History',
-      url: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1000&q=80',
+      url: '/assets/projects/tenant-payments.svg',
       caption: 'Immutable rent payment logs and ledger transparency for tenants and property owners.',
     },
   ],
@@ -240,7 +241,7 @@ export const PROJECTS_LIST: ProjectData[] = [
     featured: true,
     category: 'Full-Stack MERN',
     image: PORTFOLIO_IMAGES.tenantSystemPreview,
-    imageAlt: 'Tenant Management System Dashboard Interface Mockup',
+    imageAlt: 'Tenant Management System admin dashboard mockup showing property owners, unit occupancy and recorded rent payments',
     screenshots: [
       PORTFOLIO_IMAGES.tenantScreenshots[0].url,
       PORTFOLIO_IMAGES.tenantScreenshots[1].url,

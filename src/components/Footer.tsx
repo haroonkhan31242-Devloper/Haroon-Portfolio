@@ -5,7 +5,7 @@
 
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Github, Linkedin, Briefcase, Mail, ArrowUpRight, ArrowUp } from 'lucide-react';
+import { Github, Linkedin, Briefcase, Mail, ArrowUpRight, ArrowUp, MapPin } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { useReveal } from '../utils/gsapAnimations';
 
@@ -16,6 +16,13 @@ const NAV = [
   { to: '/services', label: 'Services Offered' },
   { to: '/projects', label: 'Projects & Case Studies' },
   { to: '/contact', label: 'Contact & Hire' },
+];
+
+const WORK = [
+  { to: '/projects/tenant-management-system', label: 'Tenant Management System' },
+  { to: '/services', label: 'MERN Application Development' },
+  { to: '/services', label: 'React.js Frontend Development' },
+  { to: '/services', label: 'REST API Development' },
 ];
 
 export const Footer: React.FC = () => {
@@ -32,72 +39,97 @@ export const Footer: React.FC = () => {
     { href: PERSONAL_INFO.github, label: 'GitHub Profile', Icon: Github, external: true },
     { href: PERSONAL_INFO.linkedin, label: 'LinkedIn Profile', Icon: Linkedin, external: true },
     { href: PERSONAL_INFO.fiverr, label: 'Fiverr Profile', Icon: Briefcase, external: true },
-    { href: `mailto:${PERSONAL_INFO.email}`, label: 'Direct Email', Icon: Mail, external: false },
+    { href: `mailto:${PERSONAL_INFO.email}`, label: 'Send an email', Icon: Mail, external: false },
   ];
 
   return (
-    <footer ref={ref} className="relative w-full overflow-hidden border-t border-white/[0.06] bg-ink-900 text-slate-400">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" aria-hidden="true" />
-
-      <div className="container-x pt-20 pb-10">
-        {/* Big sign-off */}
-        <div data-reveal="up" className="flex flex-col items-start justify-between gap-8 border-b border-white/[0.06] pb-14 md:flex-row md:items-end">
-          <div>
+    <footer ref={ref} className="relative w-full border-t border-white/[0.08] bg-ink-900 text-slate-400">
+      <div className="container-x pt-16 pb-8 sm:pt-20">
+        {/* Sign-off */}
+        <div
+          data-reveal="up"
+          className="flex flex-col items-start justify-between gap-8 border-b border-white/[0.08] pb-12 md:flex-row md:items-end"
+        >
+          <div className="max-w-2xl">
             <span className="eyebrow">Let’s work together</span>
+            <p className="mt-5 text-2xl leading-tight font-semibold tracking-[-0.025em] text-white sm:text-3xl lg:text-4xl">
+              Have a project in mind? <span className="serif-accent text-accent">Let’s talk.</span>
+            </p>
             <a
               href={`mailto:${PERSONAL_INFO.email}`}
-              className="group mt-5 block text-2xl font-semibold tracking-[-0.03em] break-all text-white sm:text-4xl lg:text-5xl"
+              className="group mt-4 inline-flex max-w-full items-center gap-2 text-base font-medium break-all text-slate-300 transition-colors hover:text-white sm:text-lg"
             >
-              <span className="link-u pb-1">{PERSONAL_INFO.email}</span>
-              <ArrowUpRight className="ml-2 inline h-6 w-6 text-accent transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 sm:h-8 sm:w-8" />
+              <span className="link-u pb-0.5">{PERSONAL_INFO.email}</span>
+              <ArrowUpRight className="h-4 w-4 shrink-0 text-accent transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>
-          <button
-            type="button"
-            onClick={scrollTop}
-            className="btn btn-secondary btn-sm shrink-0"
-            aria-label="Back to top"
-          >
-            <ArrowUp className="h-3.5 w-3.5" />
-            <span>Back to top</span>
-          </button>
+          <div className="flex flex-wrap gap-3">
+            <Link to="/contact" className="btn btn-primary">
+              <span>Start a project</span>
+              <ArrowUpRight className="icon-lift h-4 w-4" aria-hidden="true" />
+            </Link>
+            <a href={PERSONAL_INFO.fiverr} target="_blank" rel="noopener noreferrer" className="btn btn-fiverr">
+              <Briefcase className="h-4 w-4" aria-hidden="true" />
+              <span>Hire on Fiverr</span>
+            </a>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-12 py-14 md:grid-cols-12">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 py-12 lg:grid-cols-12 lg:gap-8">
           {/* Identity */}
-          <div className="md:col-span-5">
+          <div className="col-span-2 lg:col-span-4">
             <Link to="/" className="inline-flex items-center gap-3 text-base font-semibold tracking-tight text-white">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] font-mono text-[11px] text-white">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent font-mono text-[12px] text-[var(--on-accent)]">
                 HK
               </span>
               <span>{PERSONAL_INFO.name}</span>
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-slate-400">
-              Full-Stack MERN Developer specializing in building modern, responsive, and user-friendly web applications using React,
-              Node.js, Express, MongoDB, and Tailwind CSS.
+              Full-Stack MERN Developer building modern, responsive, and user-friendly web applications with React, Node.js,
+              Express, MongoDB, and Tailwind CSS.
             </p>
-            <div className="mt-6 flex items-center gap-2">
+            <p className="mt-4 inline-flex items-center gap-2 text-sm text-slate-400">
+              <MapPin className="h-4 w-4 text-accent" aria-hidden="true" />
+              {PERSONAL_INFO.location}
+            </p>
+            <ul className="mt-6 flex items-center gap-2" aria-label="Social profiles">
               {socials.map(({ href, label, Icon, external }) => (
-                <a
-                  key={label}
-                  href={href}
-                  {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] text-slate-400 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:text-white"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
+                <li key={label}>
+                  <a
+                    href={href}
+                    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    aria-label={label}
+                    title={label}
+                    className="icon-btn hover:-translate-y-0.5 hover:text-accent"
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           {/* Navigation */}
-          <div className="md:col-span-3 md:col-start-7">
-            <h4 className="font-mono text-[11px] tracking-[0.2em] text-slate-500 uppercase">Navigation</h4>
-            <ul className="mt-5 space-y-3 text-sm">
+          <nav aria-label="Footer" className="lg:col-span-2 lg:col-start-6">
+            <h2 className="font-mono text-[11px] tracking-[0.2em] text-slate-500 uppercase">Navigation</h2>
+            <ul className="mt-5 space-y-1.5">
               {NAV.map((n) => (
                 <li key={n.to}>
-                  <Link to={n.to} className="link-u pb-0.5 text-slate-300 hover:text-white">
+                  <Link to={n.to} className="footer-link">
+                    {n.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Work */}
+          <div className="order-last col-span-2 lg:order-none lg:col-span-3">
+            <h2 className="font-mono text-[11px] tracking-[0.2em] text-slate-500 uppercase">Work</h2>
+            <ul className="mt-5 space-y-1.5">
+              {WORK.map((n) => (
+                <li key={n.label}>
+                  <Link to={n.to} className="footer-link">
                     {n.label}
                   </Link>
                 </li>
@@ -105,54 +137,48 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Freelance */}
-          <div className="md:col-span-3">
-            <h4 className="font-mono text-[11px] tracking-[0.2em] text-slate-500 uppercase">Freelance &amp; Orders</h4>
-            <ul className="mt-5 space-y-3 text-sm">
+          {/* Connect */}
+          <div className="lg:col-span-2 lg:col-start-11">
+            <h2 className="font-mono text-[11px] tracking-[0.2em] text-slate-500 uppercase">Connect</h2>
+            <ul className="mt-5 space-y-1.5">
               <li>
-                <a
-                  href={PERSONAL_INFO.fiverr}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 font-medium text-emerald-300 hover:text-emerald-200"
-                >
-                  <span>Order on Fiverr</span>
-                  <ArrowUpRight className="h-3.5 w-3.5" />
+                <a href={PERSONAL_INFO.fiverr} target="_blank" rel="noopener noreferrer" className="footer-link font-medium !text-emerald-300 hover:!text-emerald-200">
+                  Order on Fiverr <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </a>
               </li>
               <li>
-                <a href={PERSONAL_INFO.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-slate-300 hover:text-white">
-                  <span>Explore GitHub Repos</span>
-                  <ArrowUpRight className="h-3.5 w-3.5" />
+                <a href={PERSONAL_INFO.github} target="_blank" rel="noopener noreferrer" className="footer-link">
+                  GitHub <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </a>
               </li>
               <li>
-                <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-slate-300 hover:text-white">
-                  <span>Connect on LinkedIn</span>
-                  <ArrowUpRight className="h-3.5 w-3.5" />
+                <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noopener noreferrer" className="footer-link">
+                  LinkedIn <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                 </a>
               </li>
-              <li className="pt-2 text-xs text-slate-500">
-                Direct Email:
-                <div className="mt-1 font-mono text-slate-300 select-all">{PERSONAL_INFO.email}</div>
+              <li>
+                <a href={`mailto:${PERSONAL_INFO.email}`} className="footer-link">
+                  Email
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 text-xs text-slate-500 sm:flex-row">
-          <p>
+        <div className="flex flex-col-reverse items-center justify-between gap-4 border-t border-white/[0.08] pt-6 text-xs text-slate-500 sm:flex-row">
+          <p className="text-center sm:text-left">
             © {currentYear} {PERSONAL_INFO.name}. All rights reserved.
           </p>
-          <div className="flex items-center gap-3 font-mono text-[11px]">
-            <span>MERN Stack</span>
-            <span aria-hidden="true">·</span>
-            <span>React.js</span>
-            <span aria-hidden="true">·</span>
-            <span>Node.js</span>
-            <span aria-hidden="true">·</span>
-            <span>MongoDB</span>
-          </div>
+          <button
+            type="button"
+            onClick={scrollTop}
+            className="group inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-full px-3 font-medium text-slate-400 transition-colors hover:text-white"
+          >
+            Back to top
+            <span className="icon-btn h-8 w-8 group-hover:-translate-y-0.5 group-hover:text-accent">
+              <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" />
+            </span>
+          </button>
         </div>
       </div>
     </footer>
