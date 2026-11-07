@@ -20,6 +20,14 @@ import {
 
 type ArchitectureTier = 'all' | 'frontend' | 'api' | 'backend' | 'database';
 
+const TIER_TABS: { id: ArchitectureTier; label: string; Icon: React.ComponentType<{ className?: string }>; activeText: string }[] = [
+  { id: 'all', label: 'Full System', Icon: Layers, activeText: 'text-cyan-300' },
+  { id: 'frontend', label: 'React UI', Icon: Layout, activeText: 'text-cyan-300' },
+  { id: 'api', label: 'Express API', Icon: Server, activeText: 'text-amber-300' },
+  { id: 'backend', label: 'Node.js', Icon: Cpu, activeText: 'text-purple-300' },
+  { id: 'database', label: 'MongoDB', Icon: Database, activeText: 'text-emerald-300' },
+];
+
 export const MernArchitectureHub: React.FC = () => {
   const [activeTier, setActiveTier] = useState<ArchitectureTier>('all');
   const [activeStep, setActiveStep] = useState<number>(0);
@@ -81,82 +89,37 @@ export const MernArchitectureHub: React.FC = () => {
   return (
     <div className="w-full rounded-2xl bg-slate-900/80 border border-slate-800 overflow-hidden shadow-2xl">
       {/* Top Console Bar */}
-      <div className="px-6 py-4 bg-slate-950/90 border-b border-slate-800 flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-2.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-cyan-400" />
+      <div className="px-4 py-4 sm:px-6 bg-slate-950/90 border-b border-slate-800 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <div className="flex items-start lg:items-center gap-2.5 min-w-0">
+          <div className="w-2.5 h-2.5 mt-1 lg:mt-0 rounded-full bg-cyan-400 shrink-0" />
           <span className="text-xs font-semibold tracking-wider uppercase text-slate-300 font-mono">
             Full-Stack MERN Architecture Pipeline
           </span>
         </div>
 
-        {/* Interactive Filter Pills */}
-        <div className="flex items-center gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
-          <button
-            onClick={() => setActiveTier('all')}
-            className={`px-3 py-1.5 rounded-lg transition-colors font-medium flex items-center gap-1.5 cursor-pointer ${
-              activeTier === 'all'
-                ? 'bg-slate-800 text-cyan-300 shadow-sm'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Layers className="w-3.5 h-3.5" />
-            <span>Full System</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTier('frontend')}
-            className={`px-3 py-1.5 rounded-lg transition-colors font-medium flex items-center gap-1.5 cursor-pointer ${
-              activeTier === 'frontend'
-                ? 'bg-slate-800 text-cyan-300 shadow-sm'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Layout className="w-3.5 h-3.5" />
-            <span>React UI</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTier('api')}
-            className={`px-3 py-1.5 rounded-lg transition-colors font-medium flex items-center gap-1.5 cursor-pointer ${
-              activeTier === 'api'
-                ? 'bg-slate-800 text-amber-300 shadow-sm'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Server className="w-3.5 h-3.5" />
-            <span>Express API</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTier('backend')}
-            className={`px-3 py-1.5 rounded-lg transition-colors font-medium flex items-center gap-1.5 cursor-pointer ${
-              activeTier === 'backend'
-                ? 'bg-slate-800 text-purple-300 shadow-sm'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Cpu className="w-3.5 h-3.5" />
-            <span>Node.js</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTier('database')}
-            className={`px-3 py-1.5 rounded-lg transition-colors font-medium flex items-center gap-1.5 cursor-pointer ${
-              activeTier === 'database'
-                ? 'bg-slate-800 text-emerald-300 shadow-sm'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Database className="w-3.5 h-3.5" />
-            <span>MongoDB</span>
-          </button>
+        {/* Interactive Filter Pills: a 2-column grid on phones so every tier stays reachable */}
+        <div className="grid grid-cols-2 sm:flex sm:items-center gap-1 w-full lg:w-auto bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
+          {TIER_TABS.map(({ id, label, Icon, activeText }) => (
+            <button
+              key={id}
+              type="button"
+              onClick={() => setActiveTier(id)}
+              aria-pressed={activeTier === id}
+              className={`min-h-11 sm:min-h-9 px-2.5 lg:px-3 py-1.5 rounded-lg transition-colors font-medium flex flex-1 items-center justify-center gap-1.5 whitespace-nowrap cursor-pointer ${
+                id === 'all' ? 'col-span-2' : ''
+              } ${activeTier === id ? `bg-slate-800 ${activeText} shadow-sm` : 'text-slate-400 hover:text-slate-200'}`}
+            >
+              <Icon className="w-3.5 h-3.5 shrink-0" />
+              <span>{label}</span>
+            </button>
+          ))}
         </div>
       </div>
 
       {/* Main Architecture Diagram / Content Grid */}
-      <div className="p-6 sm:p-8 space-y-8">
+      <div className="p-4 sm:p-8 space-y-6 sm:space-y-8">
         {/* Tier Cards Grid - All boxes clearly visible with crisp borders and selective radiant highlight */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {/* Tier 1: Frontend */}
           <div
             onClick={() => setActiveTier('frontend')}
@@ -174,7 +137,7 @@ export const MernArchitectureHub: React.FC = () => {
               </div>
             </div>
             <h4 className="text-base font-bold text-white">React.js Frontend</h4>
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className="text-[13px] sm:text-xs text-slate-300 leading-relaxed">
               Component-driven SPA with Tailwind CSS, custom state hooks, and client-side route caching.
             </p>
             <div className="pt-2 flex flex-wrap gap-1.5 text-[11px] font-mono">
@@ -201,7 +164,7 @@ export const MernArchitectureHub: React.FC = () => {
               </div>
             </div>
             <h4 className="text-base font-bold text-white">Express.js REST API</h4>
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className="text-[13px] sm:text-xs text-slate-300 leading-relaxed">
               Middleware pipelines enforcing token validation, CORS rules, rate-limiting, and error interception.
             </p>
             <div className="pt-2 flex flex-wrap gap-1.5 text-[11px] font-mono">
@@ -228,7 +191,7 @@ export const MernArchitectureHub: React.FC = () => {
               </div>
             </div>
             <h4 className="text-base font-bold text-white">Node.js Runtime</h4>
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className="text-[13px] sm:text-xs text-slate-300 leading-relaxed">
               Non-blocking asynchronous event loop handling concurrent tenant requests and transaction controllers.
             </p>
             <div className="pt-2 flex flex-wrap gap-1.5 text-[11px] font-mono">
@@ -255,7 +218,7 @@ export const MernArchitectureHub: React.FC = () => {
               </div>
             </div>
             <h4 className="text-base font-bold text-white">MongoDB & Mongoose</h4>
-            <p className="text-xs text-slate-300 leading-relaxed">
+            <p className="text-[13px] sm:text-xs text-slate-300 leading-relaxed">
               Multi-tenant isolated document models with relational references, indexes, and immutable audit logs.
             </p>
             <div className="pt-2 flex flex-wrap gap-1.5 text-[11px] font-mono">
@@ -267,11 +230,11 @@ export const MernArchitectureHub: React.FC = () => {
         </div>
 
         {/* Live Request Flow Trace Simulator */}
-        <div className="p-6 rounded-2xl bg-slate-950 border border-slate-700/80 space-y-5">
+        <div className="p-4 sm:p-6 rounded-2xl bg-slate-950 border border-slate-700/80 space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <Activity className="w-4 h-4 text-cyan-400" />
+              <div className="flex items-start sm:items-center gap-2">
+                <Activity className="w-4 h-4 mt-0.5 sm:mt-0 shrink-0 text-cyan-400" />
                 <h4 className="text-sm font-bold text-white">Lifecycle Simulation: Tenant Invitation Pipeline</h4>
               </div>
               <p className="text-xs text-slate-300">
@@ -282,7 +245,7 @@ export const MernArchitectureHub: React.FC = () => {
             <button
               onClick={handleTraceFlow}
               disabled={isTracing}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all cursor-pointer ${
+              className={`min-h-11 w-full sm:w-auto shrink-0 px-4 py-2 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 whitespace-nowrap transition-all cursor-pointer ${
                 isTracing
                   ? 'bg-slate-800 text-slate-400 cursor-not-allowed border border-slate-700'
                   : 'bg-cyan-400 text-slate-950 hover:bg-cyan-300 shadow-md shadow-cyan-500/20'
@@ -327,7 +290,7 @@ export const MernArchitectureHub: React.FC = () => {
                   </div>
 
                   <h5 className="text-xs font-bold text-white mb-1.5">{stepItem.action}</h5>
-                  <p className="text-[11px] text-slate-300 leading-relaxed line-clamp-2">
+                  <p className="text-xs sm:text-[11px] text-slate-300 leading-relaxed">
                     {stepItem.detail}
                   </p>
                 </div>
